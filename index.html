@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Make your own Website</title>
+    <link rel="icon" type="image/png" href="myow-icon.png" />
+
+    <style>
+      body {
+        font-family: sans-serif;
+        text-align: center;
+        background-color: lightblue;
+        margin: 0;
+        min-height: 100vh;
+        flex-direction: column;
+      }
+      input {
+        outline: none;
+        padding: 7px;
+        border-radius: 3px;
+        border: none;
+      }
+      button {
+        border: none;
+        background-color: #8a2be2;
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 5px;
+      }
+      .website {
+        display: block;
+        justify-content: center;
+        margin: auto;
+        margin-top: 20px;
+        height: 600px;
+        width: 900px;
+        border-radius: 10px;
+        background-color: white;
+        padding-top: 15px;
+      }
+      #button {
+        display: none;
+      }
+      #alertInput,
+      #buttonSize {
+        margin: 10px 5px;
+      }
+      .button-options {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #showAll {
+        display: block;
+        margin: 20px auto;
+        font-size: 20px;
+        padding: 15px;
+      }
+      .footer {
+        background-color: rgb(141, 202, 222);
+        text-align: center;
+        padding: 20px;
+        margin-top: 50px;
+        font-size: 15px;
+      }
+      #inputHeading {
+        margin-right: 10px;
+      }
+      #clear {
+        background-color: red;
+        font-size: 25px;
+      }
+      #clear:hover {
+        animation: shake 200ms infinite;
+      }
+      @keyframes shake {
+        0% {
+          transform: rotate(0deg);
+        }
+        50% {
+          transform: rotate(5deg);
+        }
+        100% {
+          transform: rotate(-5deg);
+        }
+      }
+      img {
+        width: 350px;
+        border-radius: 15px;
+      }
+      #imagePreview {
+        display: block;
+        margin: 10px auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="title">Make your own Website 🎨</h1>
+    <p>
+      you can make your own website <br />
+      and if you like it you can code it with vs code<br />
+      and you can pay mee <strong>$15</strong> to make it for you
+      <strong>BUT BETTER</strong>
+    </p>
+
+    <p>Background Colour:</p>
+    <input id="inputBG" type="color" value="#fff" />
+    <input id="inputBG2" type="color" value="#fff" />
+    <button onclick="backgroundColor()">submit</button>
+
+    <p>Heading:</p>
+    <input id="inputHeading" placeholder="My Heading" />
+    <input id="headingSize" type="number" placeholder="Size" />
+    <input id="headingColor" type="color" value="#000" />
+    <button onclick="headingShow()">submit</button>
+
+    <p>Paragraph:</p>
+    <input id="inputP" placeholder="My Paragraph" />
+    <input id="pSize" type="number" placeholder="Size" />
+    <input id="paragraphColor" type="color" value="#000" />
+    <button onclick="paragraphShow()">submit</button>
+
+    <p>Button:</p>
+    <input id="inputButton" placeholder="Button" />
+    <input id="buttonColor" type="color" value="#fff" />
+    <input id="buttonColor2" type="color" value="#fff" />
+    <div class="button-options">
+      <input id="alertInput" placeholder="Alert" />
+      <input id="buttonSize" type="number" placeholder="Size" />
+    </div>
+    <button onclick="buttonShow()">submit</button>
+
+    <p>Image:</p>
+    <input id="imageInput" type="file" accept="image/*" />
+
+    <div class="website">
+      <h1 id="heading"></h1>
+      <p id="paragraph"></p>
+      <button id="button"></button>
+      <img id="imagePreview" />
+    </div>
+    <button id="showAll" onclick="showAll()">Show all</button>
+    <button id="clear" onclick="clearWebsite()">DELETE EVERTHING</button>
+
+    <div class="footer">
+      <p>
+        Bugs 🐛: If this website's URL isn't working I'm probably updating the
+        website
+      </p>
+    </div>
+
+    <script>
+      const background = document.querySelector("#inputBG");
+      const background2 = document.querySelector("#inputBG2");
+      const heading = document.querySelector("#heading");
+      const inputHeading = document.querySelector("#inputHeading");
+      const paragraph = document.querySelector("#paragraph");
+      const inputP = document.querySelector("#inputP");
+      const website = document.querySelector(".website");
+      const headingColor = document.querySelector("#headingColor");
+      const paragraphColor = document.querySelector("#paragraphColor");
+      const inputButton = document.querySelector("#inputButton");
+      const buttonColor = document.querySelector("#buttonColor");
+      const buttonColor2 = document.querySelector("#buttonColor2");
+      const button = document.querySelector("#button");
+      const alertInput = document.querySelector("#alertInput");
+      const buttonSize = document.querySelector("#buttonSize");
+      const headingSize = document.querySelector("#headingSize");
+      const pSize = document.querySelector("#pSize");
+      const imageInput = document.querySelector("#imageInput");
+      const imagePreview = document.querySelector("#imagePreview");
+
+      function headingShow() {
+        heading.textContent = inputHeading.value;
+        heading.style.color = headingColor.value;
+        heading.style.fontSize = headingSize.value + "px";
+      }
+
+      function paragraphShow() {
+        paragraph.textContent = inputP.value;
+        paragraph.style.color = paragraphColor.value;
+        paragraph.style.fontSize = pSize.value + "px";
+      }
+
+      function buttonShow() {
+        button.textContent = inputButton.value;
+        button.style.backgroundColor = buttonColor.value;
+        button.style.color = buttonColor2.value;
+        button.style.display = "inline-block";
+        button.style.fontSize = buttonSize.value + "px";
+
+        button.onclick = function () {
+          alert(alertInput.value);
+        };
+      }
+
+      function backgroundColor() {
+        website.style.background = `linear-gradient(100deg, ${background.value}, ${background2.value})`;
+      }
+
+      function showAll() {
+        backgroundColor();
+        headingShow();
+        paragraphShow();
+        buttonShow();
+      }
+
+      function clearWebsite() {
+        website.innerHTML = "";
+      }
+
+      imageInput.addEventListener("change", function () {
+        const file = imageInput.files[0];
+
+        imagePreview.src = URL.createObjectURL(file);
+      });
+    </script>
+  </body>
+</html>
